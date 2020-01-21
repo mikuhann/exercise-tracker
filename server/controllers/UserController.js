@@ -20,7 +20,7 @@ module.exports = {
     try {
       const users = await User.find();
 
-      if (!users) {
+      if (users.length === 0) {
         return res.json({
           message: 'No users found',
         })
