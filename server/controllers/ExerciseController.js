@@ -69,24 +69,10 @@ module.exports = {
   },
   update: async (req, res) => {
     try {
-      const { userName, description, duration, date } = req.body;
-
-      let exercise = await Exercise.findByIdAndUpdate(req.params.id);
-
-      if (!exercise) {
-        return res.json({
-          message: `Exercise with ${req.params.id} was not found`,
-        })
-      }
-
-      exercise = {
-        userName,
-        description,
-        duration,
-        date
-      };
-
-      await exercise.save();
+      const exercise = await Exercise.findByIdAndUpdate(req.params.id,
+        { $set: { ...req.body } },
+        { new: true }
+        );
 
       return res.json({
         payload: exercise,
