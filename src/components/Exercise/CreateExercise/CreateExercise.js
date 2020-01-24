@@ -2,6 +2,7 @@ import React from 'react';
 import DatePicker from 'react-datepicker';
 
 import useSetCurrentUser from './hooks/useSetCurrentUser';
+import Input from '../../Input';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -31,24 +32,20 @@ const CreateExercise = () => {
             }
           </select>
         </div>
-        <div className='form-group'>
-          <label>Description:</label>
-          <input
-            type="text"
-            className='form-control'
-            name='description'
-            value={exercise.description}
-            onChange={onChangeHandler} />
-        </div>
-        <div className='form-group'>
-          <label>Duration (in minutes): </label>
-          <input
-            type="text"
-            className='form-control'
-            name='duration'
+        <Input
+          label='Description'
+          type='text'
+          name='description'
+          value={exercise.description}
+          onChangeHandler={onChangeHandler}
+        />
+          <Input
             value={exercise.duration}
-            onChange={onChangeHandler} />
-        </div>
+            name='duration'
+            label='Duration (in minutes)'
+            onChangeHandler={onChangeHandler}
+            type='number'
+          />
         <div className='form-group'>
           <label>Date:</label>
           <div>
