@@ -6,6 +6,8 @@ const ExerciseTrackerApi = axios.create({
 
 export const configHeaders = (config) => {
   config.headers['Content-Type'] = 'application/json';
+
+  return config;
 };
 
 ExerciseTrackerApi.interceptors.request.use(configHeaders, (error) => {
