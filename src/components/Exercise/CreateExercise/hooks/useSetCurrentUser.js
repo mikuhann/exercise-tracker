@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import * as UserService from '../../../../service/UserService';
+
 const useSetCurrentUser = () => {
   const [exercise, setExercise] = useState({
     userName: '',
@@ -10,7 +12,11 @@ const useSetCurrentUser = () => {
   });
 
   useEffect(() => {
-    setExercise({...exercise, userName: 'BlaBla', users: ['BlaBla', 'Kek Kek']})
+    (async () => {
+      const users = await UserService.getUsers();
+
+      setExercise({...exercise, userName: users[0].userName, users: users.map((user) => user.userName)});
+    })();
   }, []);
 
   return { exercise, setExercise };
