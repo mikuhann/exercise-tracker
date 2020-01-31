@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const ExerciseTrackerApi = axios.create({
-  baseURL: process.env.REACT_APP_APU_URL,
+  baseURL: process.env.REACT_APP_API_URL,
 });
 
 export const configHeaders = (config) => {

@@ -6,5 +6,5 @@ export const userEndpoints = {
 export const exerciseEndpoints = {
   CREATE: '/exercises/add',
   EXERCISES: '/exercises',
-  EXERCISE: '/exercise/:id',
+  EXERCISE: '/exercises/:id',
 };

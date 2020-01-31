@@ -22,7 +22,7 @@ export const getExercise = async (id) => {
   }
 };
 
-const editExercise = async (exercise) => {
+export const editExercise = async (exercise) => {
   try {
     const res = await ExerciseTrackerApi.post(
       endpointWithParams(exerciseEndpoints.EXERCISE, { id: exercise.id }), exercise );
@@ -34,7 +34,7 @@ const editExercise = async (exercise) => {
 };
 
 
-const deleteExercise = async (id) => {
+export const deleteExercise = async (id) => {
   try {
     const res = await ExerciseTrackerApi.delete(endpointWithParams(exerciseEndpoints.EXERCISE, { id }));
 
