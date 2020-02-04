@@ -1,19 +1,11 @@
-import {useState, useEffect} from 'react';
-
-import * as ExerciseService from '../../../../service/ExerciseService';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getExercises } from '../../../../actions/exercise';
 
 export const useSetExercises = () => {
-  const [exercises, setExercises] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    (async () => {
-      const exercises = await ExerciseService.getExercises();
-
-      setLoading(false);
-      setExercises(exercises);
-    })();
+    dispatch(getExercises())
   }, []);
-
-  return { exercises, loading, setExercises }
 };

@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store';
 
 import Navbar from './components/Navbar';
 import CreateUser from './components/CreateUser';
@@ -13,15 +15,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
-    <Router>
-      <div className='container'>
-        <Navbar />
-        <Route exact path={ routing.HOME } component={ ExercisesList } />
-        <Route exact path={ routing.CREATE_EXERCISE } component={ CreateExercise } />
-        <Route exact path={ routing.CREATE_USER } component={ CreateUser } />
-        <Route exact path={ routing.EDIT_EXERCISE } component={ EditExercise } />
-      </div>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <div className='container'>
+          <Navbar />
+          <Route exact path={ routing.HOME } component={ ExercisesList } />
+          <Route exact path={ routing.CREATE_EXERCISE } component={ CreateExercise } />
+          <Route exact path={ routing.CREATE_USER } component={ CreateUser } />
+          <Route exact path={ routing.EDIT_EXERCISE } component={ EditExercise } />
+        </div>
+      </Router>
+    </Provider>
   );
 }
 

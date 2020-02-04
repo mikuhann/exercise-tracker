@@ -1,23 +1,26 @@
 import React from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 
 import ExercisesListItem from './ExercisesListItem';
 import { useSetExercises } from './hooks/useSetExercises';
-import * as ExerciseServise from '../../../service/ExerciseService';
+import { selectExercises, selectLoading } from '../../../constants/selectors/exercise';
+import { deleteExerciseById } from '../../../actions/exercise';
 
 
 const ExercisesList = () => {
-  const { exercises, loading, setExercises } =  useSetExercises();
+  const exercises = useSelector(selectExercises);
+  const loading = useSelector(selectLoading);
+  const dispatch = useDispatch();
 
-  if (loading || exercises === null) {
+  useSetExercises();
+
+  if (loading || exercises.length === 0) {
     return <div className='text-center'>Loading...</div>
   }
 
-  const onDeleteExercise = async (id) => {
-    await ExerciseServise.deleteExercise(id);
-
-    setExercises(exercises.map((exercise) => exercise._id !== id && exercise))
+  const removeExerciseById = (id) => {
+    dispatch(deleteExerciseById(id));
   };
-
 
   return (
     <div>
@@ -37,7 +40,7 @@ const ExercisesList = () => {
           <ExercisesListItem
             key={index}
             exercise={exercise}
-            deleteExercise={onDeleteExercise}
+            deleteExercise={removeExerciseById}
           />)
         }
         </tbody>

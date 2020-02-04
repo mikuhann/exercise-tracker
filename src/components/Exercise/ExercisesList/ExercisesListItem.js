@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ExercisesListItem = ({ exercise, deleteExercise }) => {
-  const { userName, description, duration, date } = exercise;
+  const { _id, userName, description, duration, date } = exercise;
 
   return (
     <tr>
@@ -12,7 +12,7 @@ const ExercisesListItem = ({ exercise, deleteExercise }) => {
       <td>
         <button
           className='btn btn-danger'
-          onClick={() => deleteExercise(exercise._id)}>
+          onClick={() => deleteExercise(_id)}>
         Delete
         </button>
       </td>
