@@ -2,6 +2,7 @@ import {
   GET_EXERCISES,
   SET_LOADING,
   DELETE_EXERCISE,
+  CREATE_EXERCISE,
 } from '../constants/actions/Exercise';
 import * as ExerciseService from '../service/ExerciseService';
 
@@ -15,6 +16,19 @@ export const getExercises = () => async (dispatch) => {
       type: GET_EXERCISES,
       payload: exercises,
     });
+  } catch (e) {
+    console.log(e.message);
+  }
+};
+
+export const createExercise = (exercise) => async (dispatch) => {
+  try {
+    const newExercise = await ExerciseService.createExercise(exercise);
+
+    dispatch({
+      type: CREATE_EXERCISE,
+      payload: newExercise,
+    })
   } catch (e) {
     console.log(e.message);
   }

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import * as UserService from '../../../../service/UserService';
 
-const useSetCurrentUser = () => {
+const useSetCurrentExercise = () => {
   const [exercise, setExercise] = useState({
     userName: '',
     description: '',
@@ -22,4 +22,4 @@ const useSetCurrentUser = () => {
   return { exercise, setExercise };
 };
 
-export default useSetCurrentUser;
+export default useSetCurrentExercise;

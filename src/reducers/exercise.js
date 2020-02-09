@@ -1,7 +1,8 @@
 import {
   DELETE_EXERCISE,
   GET_EXERCISES,
-  SET_LOADING
+  SET_LOADING,
+  CREATE_EXERCISE,
 } from '../constants/actions/Exercise';
 
 import { removeItemById } from './helpers/removeItemById';
@@ -20,6 +21,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         exercises: payload,
+      };
+    }
+    case CREATE_EXERCISE: {
+      return {
+        ...state,
       };
     }
     case DELETE_EXERCISE: {

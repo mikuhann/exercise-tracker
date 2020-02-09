@@ -1,19 +1,24 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import DatePicker from 'react-datepicker';
 
-import useSetCurrentUser from './hooks/useSetCurrentUser';
+import useSetCurrentExercise from './hooks/useSetCurrentExercise';
 import Input from '../../Input';
+import { createExercise } from '../../../actions/exercise';
+import { routing } from '../../../constants/routing';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-const CreateExercise = () => {
-  const { exercise, setExercise } = useSetCurrentUser();
+const CreateExercise = ({ history }) => {
+  const { exercise, setExercise } = useSetCurrentExercise();
+  const dispatch = useDispatch();
 
   const onChangeHandler = (e) => setExercise({ ...exercise, [e.target.name]: e.target.value });
   const onChangeDate = (date) => setExercise({...exercise, date: date});
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log(exercise);
+    dispatch(createExercise(exercise));
+    history.push(routing.HOME)
   };
 
   return (

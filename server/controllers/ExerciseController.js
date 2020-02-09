@@ -3,7 +3,7 @@ const Exercise = require('../models/ExerciseSchema');
 module.exports = {
   getExercises: async (req, res) => {
     try {
-      const exercises = await Exercise.find();
+      const exercises = await Exercise.find().sort({ createdAt: -1});
 
       if (exercises.length === 0) {
         return res.json({

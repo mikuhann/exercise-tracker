@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
 import ExercisesListItem from './ExercisesListItem';
-import { useSetExercises } from './hooks/useSetExercises';
 import { selectExercises, selectLoading } from '../../../constants/selectors/exercise';
-import { deleteExerciseById } from '../../../actions/exercise';
+import {deleteExerciseById, getExercises} from '../../../actions/exercise';
 
 
 const ExercisesList = () => {
@@ -12,7 +11,9 @@ const ExercisesList = () => {
   const loading = useSelector(selectLoading);
   const dispatch = useDispatch();
 
-  useSetExercises();
+  useEffect(() => {
+    dispatch(getExercises())
+  }, []);
 
   if (loading || exercises.length === 0) {
     return <div className='text-center'>Loading...</div>

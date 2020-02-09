@@ -1,3 +1,4 @@
 export const GET_EXERCISES = 'GET_EXERCISES';
 export const SET_LOADING = 'SET_LOADING';
 export const DELETE_EXERCISE = 'DELETE_EXERCISE';
+export const CREATE_EXERCISE = 'CREATE_EXERCISE';

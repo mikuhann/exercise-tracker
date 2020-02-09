@@ -12,6 +12,16 @@ export const getExercises = async () => {
   }
 };
 
+export const createExercise = async (exercise) => {
+  try {
+    const res = await ExerciseTrackerApi.post(exerciseEndpoints.CREATE, exercise);
+
+    return res.data.payload;
+  } catch (e) {
+    console.log(e.message);
+  }
+};
+
 export const getExercise = async (id) => {
   try {
     const res = await ExerciseTrackerApi.get(endpointWithParams(exerciseEndpoints.EXERCISE, { id }));
