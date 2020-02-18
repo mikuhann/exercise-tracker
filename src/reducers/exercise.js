@@ -26,6 +26,7 @@ export default (state = initialState, action) => {
     case CREATE_EXERCISE: {
       return {
         ...state,
+        exercises: [payload, ...state.exercises]
       };
     }
     case DELETE_EXERCISE: {
@@ -41,6 +42,6 @@ export default (state = initialState, action) => {
       };
     }
     default:
-      return state
+      return state;
   }
 };

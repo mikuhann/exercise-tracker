@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import Input from '../Input';
 
-import * as UserService from '../../service/UserService';
+import { createUser } from '../../actions/users';
+import { routing } from '../../constants/routing';
 
-const CreateUser = () => {
+const CreateUser = ({ history }) => {
   const [user, setUser] = useState({ userName: '', });
   const [error, setError] = useState(false);
+  const dispatch = useDispatch();
 
   const onChangeHandler = (e) => {
     setUser({...user, [e.target.name]: e.target.value });
@@ -19,11 +22,13 @@ const CreateUser = () => {
     if (user.userName === '') {
       setError(true);
     } else {
-      await UserService.createUser(user);
+      dispatch(createUser(user));
 
       setUser({
         userName: ''
       });
+
+      history.push(routing.HOME)
     }
   };
 
